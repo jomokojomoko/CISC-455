@@ -2,15 +2,8 @@ import random
 
 
 def tournament_selection(population, fitness, offspring, offspring_fitness, machine_count, offspring_machine_count):
-    """Selects survivors from the population using tournament selection.
 
-    Arguments:
-    population -- a list of individuals to select from
-    tournament_size -- the number of individuals to include in each tournament
-
-    Returns:
-    a list of the selected survivors
-    """
+    #Initialzie varible
     total_population = population+offspring
     total_fitness = fitness+offspring_fitness
     total_machine_count = machine_count+offspring_machine_count
@@ -48,7 +41,7 @@ def truncation_selection(population, fitness, offspring, offspring_fitness, mach
     sorted_fitness=[total_fitness[i] for i in sorted_index]
 
     # calculate the number of individuals to keep
-    num_to_keep = len(population)
+    num_to_keep = (population)
 
     # select the top individuals to survive
     survivors = sorted_population[:num_to_keep]
