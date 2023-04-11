@@ -17,7 +17,9 @@ def calculate_fitness(individual):
             overlap_start = max(s1, s2)
             overlap_end = min(e1, e2)
             #If theres a conflicting job add the overlap if not add 0
-            conflicts_time += max(0, overlap_end - overlap_start)
+            overlap_start_minutes=(overlap_start//100)*60+overlap_start%100
+            overlap_end_minutes=(overlap_start//100)*60+overlap_end%100
+            conflicts_time += max(0, overlap_end-overlap_start)
     #Normalize with amount of machines
     conflicts_time*=num_machines
     # convert conflict_time minimization problem to a maximization problem

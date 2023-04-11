@@ -41,7 +41,7 @@ def truncation_selection(population, fitness, offspring, offspring_fitness, mach
     sorted_fitness=[total_fitness[i] for i in sorted_index]
 
     # calculate the number of individuals to keep
-    num_to_keep = (population)
+    num_to_keep = len(population)
 
     # select the top individuals to survive
     survivors = sorted_population[:num_to_keep]
