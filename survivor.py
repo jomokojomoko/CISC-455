@@ -49,3 +49,15 @@ def truncation_selection(population, fitness, offspring, offspring_fitness, mach
     survivors_machine_count = sorted_machine_count[:num_to_keep]
 
     return survivors, survivors_fitness, survivors_machine_count
+
+def combine_random(survivors, survivors_fitness, survivors_machine_count):
+    survivor=[]
+    survivor_fitness=[]
+    survivor_machine_count=[]
+    for i in range(len(survivors[0])):
+        index=random.randrange(len(survivors))
+        survivor.append(survivors[index][i])
+        survivor_fitness.append(survivors_fitness[index][i])
+        survivor_machine_count.append(survivors_machine_count[index][i])
+    return survivor,survivor_fitness,survivor_machine_count
+

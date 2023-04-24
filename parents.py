@@ -1,4 +1,5 @@
 import random
+import math
 
 #Stochastic Uninversal Selection parent selection
 def SUS_parent_selection(population, fitness_values, num_parents,machine_count):
@@ -40,5 +41,31 @@ def rank_selection(population, fitness, num_parents, machine_count):
     parent_indices = random.choices(range(len(population)), weights=probabilities, k=num_parents)
 
     return [population[sorted_index[i]] for i in parent_indices], [machine_count[sorted_index[i]] for i in parent_indices]
+
+def boltzmann_selection(population, fitness, num_parents, machine_count):
+
+    index=list(range(len(fitness)))
+    parent_indices=[]
+
+    # calculate the Boltzmann factors for each individual
+    boltzmann_factors = [math.exp(fitness[individual]) for individual in index]
+    # calculate the total Boltzmann factor for the population
+    total_boltzmann_factor = sum(boltzmann_factors)
+    weighted_boltzmann_factor=[i/total_boltzmann_factor for i in boltzmann_factors]
+    # select an individual using a weighted random choice based on Boltzmann factors
+    parent_indices = random.choices(index, weights=weighted_boltzmann_factor,k=num_parents)
+    
+    return [population[i] for i in parent_indices], [machine_count[i] for i in parent_indices]
+
+def combine_random(populations, machine_counts):
+    population=[]
+    machine_count=[]
+    for i in range(len(populations[0])):
+        index=random.randrange(len(populations))
+        population.append(populations[index][i])
+        machine_count.append(machine_counts[index][i])
+
+    return population, machine_count
+                   
 
 

@@ -41,8 +41,10 @@ def main():
     while gen < gen_limit:
         
         # pick parents, theres two optiions SUS or Rank selection, SUS should be paired with tournament and rank should be paired with Truncation
-        parents, pmachine_count = p_selection.SUS_parent_selection(population,fitness, mating_pool_size,machine_count)
-        #parents, pmachine_count = p_selection.rank_selection(population,fitness, mating_pool_size,machine_count)
+        parents1, pmachine_count1 = p_selection.SUS_parent_selection(population,fitness, mating_pool_size,machine_count)
+        parents2, pmachine_count2 = p_selection.rank_selection(population,fitness, mating_pool_size,machine_count)
+        parents3, pmachine_count3 = p_selection.boltzmann_selection(population,fitness, mating_pool_size,machine_count)
+        parents,pmachine_count=p_selection.combine_random([parents1,parents2,parents3],[pmachine_count1,pmachine_count2,pmachine_count3])
 
         # in order to randomly pair up parents
         random_idx=list(range(len(parents)))
@@ -95,9 +97,10 @@ def main():
             i = i+2  # update the counter
 
         # organize the population of next generation, with either tournament or truncation selection
-        population, fitness, machine_count = survivor.tournament_selection(population, fitness, offspring, offspring_fitness, machine_count,offspring_machine_count)
-        #population, fitness, machine_count = survivor.truncation_selection(population, fitness, offspring, offspring_fitness, machine_count,offspring_machine_count)
+        population1, fitness1, machine_count1 = survivor.tournament_selection(population, fitness, offspring, offspring_fitness, machine_count,offspring_machine_count)
+        population2, fitness2, machine_count2 = survivor.truncation_selection(population, fitness, offspring, offspring_fitness, machine_count,offspring_machine_count)
 
+        population,fitness,machine_count=survivor.combine_random([population1,population2],[fitness1,fitness2],[machine_count1,machine_count2])
         
         gen = gen + 1  # update the generation counter
         end_time=time.time()
