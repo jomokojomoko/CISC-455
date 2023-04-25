@@ -42,7 +42,7 @@ def main():
     # evolution begins
     while gen < gen_limit:
         
-        # pick parents, theres two optiions SUS or Rank selection, SUS should be paired with tournament and rank should be paired with Truncation
+       
         parents1, pmachine_count1 = p_selection.SUS_parent_selection(population,fitness, mating_pool_size,machine_count)
         parents2, pmachine_count2 = p_selection.rank_selection(population,fitness, mating_pool_size,machine_count)
         parents3, pmachine_count3 = p_selection.boltzmann_selection(population,fitness, mating_pool_size,machine_count)
