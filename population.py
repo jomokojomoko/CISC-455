@@ -3,8 +3,8 @@ import random
 # Define the problem parameters
 
 num_machines = 2
-initial_times=[0,100,200,300,400,500,330,600,730,900,1000,600,1400,1300]
-end_times=[30,230,300,450,500,530,600,800,900,1000,1200,800,1600,1700]
+initial_times=[0,100,200,300,400,500,330,600,730,900,1000,600,1400,1300,1500,700,800,900,1000,1100,1200]
+end_times=[30,230,300,450,500,530,600,800,900,1000,1200,800,1600,1700,1630,730,900,1100,1300,1200,1400]
 num_jobs = len(initial_times)
 # Generate an initial population of random solutions
 def generate_population(size):
