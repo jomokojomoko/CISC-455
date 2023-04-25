@@ -8,6 +8,7 @@ import parents as p_selection
 import recombination
 import mutation
 import survivor
+import matplotlib.pyplot as plt
 
    
 def main():
@@ -15,9 +16,9 @@ def main():
     start_time=time.time()
     random.seed()
     numpy.random.seed()
-
+    avgFitness = []
     #Size of population
-    popsize = 20  
+    popsize = 40  
     #Amount of parents
     mating_pool_size = int(popsize*0.5) 
     #Different rates for mutations
@@ -26,7 +27,8 @@ def main():
     subtract_rate=0.01
     mut_rate = 0.2
     #Amount of iterations
-    gen_limit = 50
+    gen_limit = 80
+    
 
     # initialize population
     gen = 0 # initialize the generation counter
@@ -105,8 +107,12 @@ def main():
         gen = gen + 1  # update the generation counter
         end_time=time.time()
         print("generation", gen, ": best fitness", max(fitness), "average fitness", sum(fitness)/len(fitness), "time", end_time-start_time, "seconds")
-        
+        avgFitness.append(sum(fitness)/len(fitness))  
     # evolution ends
+    
+    #plot average fitness
+    plt.plot(avgFitness)
+    plt.show()
     
     # print the final best solution(s)
     end_time=time.time()
